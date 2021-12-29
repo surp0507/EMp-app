@@ -1,36 +1,31 @@
 {
   "data": [
     {
-      "employee_name": "Airi Satou",
-      "employee_age": 33,
-      "employee_salary": 162700,
-      "employee_email": "airi@gmail.com",
-      "employee_phone": "1356478",
-      "employee_type": "Female",
-      "id": 5
-    },
-    {
-      "employee_name": "Brielle Williamson",
-      "employee_age": 61,
-      "employee_salary": 372000,
-      "employee_email": "brielle@gmail.com",
-      "employee_phone": "45231678",
+      "employee_name": "Brielle ",
+      "employee_age": "62",
+      "employee_salary": "37200",
+      "employee_email": "brelle@gmail.com",
+      "employee_phone": "45231673",
       "employee_type": "male",
       "id": 6
     },
     {
-      "id": 7,
       "employee_name": "Herrod Chandler",
-      "employee_salary": 137500,
-      "employee_age": 59,
-      "profile_image": ""
+      "employee_age": "52",
+      "employee_salary": "1375033",
+      "employee_email": "herrod@gmail.com",
+      "employee_phone": "1234557894",
+      "employee_type": "male",
+      "id": 7
     },
     {
-      "id": 8,
-      "employee_name": "Rhona Davidson",
-      "employee_salary": 327900,
-      "employee_age": 55,
-      "profile_image": ""
+      "employee_name": "Rhona devi",
+      "employee_age": "44",
+      "employee_salary": "45000",
+      "employee_email": "Rhona@gmail.com",
+      "employee_phone": "4561237891",
+      "employee_type": "Female",
+      "id": 8
     },
     {
       "id": 9,
@@ -140,23 +135,19 @@
       "profile_image": ""
     },
     {
-      "id": 24,
-      "employee_name": "Doris Wilder",
-      "employee_salary": 85600,
-      "employee_age": 23,
-      "profile_image": ""
+      "employee_name": "Db",
+      "employee_age": "23",
+      "employee_salary": "85600",
+      "employee_email": "breelle@gmail.com",
+      "employee_phone": "4566134574",
+      "employee_type": "male",
+      "id": 24
     },
     {
       "employee_name": "surendra",
       "employee_age": "22",
       "employee_salary": "7000",
       "id": 25
-    },
-    {
-      "employee_name": "Rupam sahare",
-      "employee_age": "22",
-      "employee_salary": "40000",
-      "id": 26
     },
     {
       "employee_name": "devendra",
@@ -175,6 +166,43 @@
       "employee_phone": "123456",
       "employee_type": "male",
       "id": 28
+    },
+    {
+      "employee_name": "jitendra",
+      "employee_age": "23",
+      "employee_salary": "25000",
+      "employee_email": "jitendra@gmail.com",
+      "employee_phone": "1234567891",
+      "employee_type": "male",
+      "id": 31
+    },
+    {
+      "employee_name": "kamlesh",
+      "employee_age": "23",
+      "employee_salary": "200010",
+      "employee_email": "kamlesh@gmail.com",
+      "employee_phone": "2314672482",
+      "employee_type": "male",
+      "id": 32
+    },
+    {
+      "employee_name": "Aalok",
+      "employee_age": "25",
+      "employee_salary": "45000",
+      "employee_email": "aalok@gmail.com",
+      "employee_phone": "4567891232",
+      "employee_type": "male",
+      "id": 33
+    },
+    {
+      "employee_name": "rupam",
+      "employee_age": "22",
+      "employee_salary": "35000",
+      "employee_email": "rupam@gmail.com",
+      "employee_phone": "4567891234",
+      "employee_type": "male",
+      "employee_city": "indore",
+      "id": 34
     }
   ]
 }
