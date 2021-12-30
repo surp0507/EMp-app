@@ -76,7 +76,7 @@ export const IndividualEmp = () => {
     <div>
       <h3 className="text-center my-3">Update employee</h3>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="container">
+      <form onSubmit={handleSubmit(onSubmit)} className="container" autoComplete="off">
         <div className="form-group " onChange={(e) => setName(e.target.value)}>
           <label htmlFor="name" className="text-success">Name:-</label>
           <input
@@ -94,9 +94,8 @@ export const IndividualEmp = () => {
               trigger("name");
             }}
             className={` form-control ${errors.name && "invalid"} text-center`}
-            placeholder="name"
             value={employee_name}
-            autocomplete="off"
+            placeholder="name"
           />
           {errors.name && (
             <small className="text-danger">{errors.name.message}</small>
@@ -129,7 +128,6 @@ export const IndividualEmp = () => {
             } my-1 text-center`}
             value={employee_age}
             placeholder="age"
-            autocomplete="off"
           />
           {errors.age && (
             <small className="text-danger">{errors.age.message}</small>
@@ -251,7 +249,7 @@ export const IndividualEmp = () => {
         }}
         value={employee_city} 
         className="form-control"/>
-         {errors.name && (
+         {errors.city && (
             <small className="text-danger">{errors.city.message}</small>
           )}
         </div>

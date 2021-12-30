@@ -2,3 +2,8 @@
 .invalid{
   border: 1px solid red;
 }
+
+.ant-spin-dot-item {
+  background-color: red;
+  size: "large";
+}
