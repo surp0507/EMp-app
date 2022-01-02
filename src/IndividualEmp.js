@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Table } from "antd";
 import axios from "axios";
+import { Divider } from "antd";
 
 export const IndividualEmp = () => {
   const [dataSource, setDataSource] = useState([]);
@@ -47,9 +48,10 @@ export const IndividualEmp = () => {
 
   return (
     <div>
-      <h3 className="text-center my-3">Update employee</h3>
-
-      <Table columns={columns} dataSource={dataSource}></Table>
+ <Divider orientation="center">Employee Detaile</Divider>
+      <Table columns={columns} dataSource={dataSource}
+       style={{padding:"3%"}}
+      ></Table>
     </div>
   );
 };

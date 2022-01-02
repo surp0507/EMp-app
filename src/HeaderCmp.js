@@ -20,7 +20,7 @@ export const HeaderCmp = () => {
             </Menu.Item>
             <Menu.Item>
               {" "}
-              <Link to="/admin">Logout </Link>{" "}
+              <Link to="/employee">Logout </Link>{" "}
             </Menu.Item>
 
             <Menu.Item>

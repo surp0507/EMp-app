@@ -27,7 +27,7 @@ export const Login = () => {
       if (values.username === item.employee_name) {
         navigate(`/emp/${item.id}`);
       } else {
-        alert("incorrect username");
+        alert("incorrect username or password");
       }
     });
   };
