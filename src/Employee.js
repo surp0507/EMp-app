@@ -1,27 +1,54 @@
 import axios from "axios";
-import { Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Login } from "./Login";
 import { city } from "./City";
 import React, { useEffect, useState } from "react";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { Table, Button, Modal, Input,Row,Col } from "antd";
+import { HeaderCmp } from "./HeaderCmp";
+import { Table, Button, Modal,Form, Input,Select } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export const Employee = () => {
   const [show, setShow] = useState(false);
+
+  const [editEmp,setEditEmp]=useState(null)
   const [dataSource, setDataSource] = useState([]);
-  const [employee_name, setName] = useState("");
-  const [employee_age, setAge] = useState("");
-  const [employee_salary, setSalary] = useState("");
-  const [employee_email, setEmployeeEmail] = useState("");
-  const [employee_phone, setEmployeePhone] = useState("");
-  const [employee_type, setEmployeeType] = useState("");
-  const [employee_city, setEmployeeCity] = useState("");
   const [loading, setLoading] = useState(false);
   const [modal1Visible, setModal1Visible] = useState(false);
-  console.log(modal1Visible);
-  const { Header, Content, Footer } = Layout;
+  const [form] = Form.useForm();
+
+  const handleClose = () => setModal1Visible(false);
+  const handleShow = () => setModal1Visible(true);
+  const navigate=useNavigate()
+
+
+
+const onFill=()=>{
+  form.setFieldsValue({
+    employee_name: editEmp?.employee_name,
+    employee_age: editEmp?.employee_age,
+    employee_salary:editEmp?.employee_salary,
+    employee_email:editEmp?.employee_email,
+    employee_phone:editEmp?.employee_phone,
+    employee_city:editEmp?.employee_city
+  });
+}
+
+  const handleUpdate=(record)=>{
+    onFill();
+    handleShow()
+    setShow(true)
+    setEditEmp({...record});
+    console.log(record);
+  }
+
+ const  handleAddEmployee=()=>{
+  form.resetFields();
+   handleShow();
+   setShow(false)
+ 
+ }
+
   const columns = [
     {
       title: "emp_name",
@@ -52,9 +79,9 @@ export const Employee = () => {
       render: (record) => {
         return (
           <>
-            <Link to={`/emp/${record.id}`}>
-              <EditOutlined />
-            </Link>
+           
+              <EditOutlined onClick={()=>handleUpdate(record)} />
+         
             <DeleteOutlined
               onClick={() => deleteEmp(record.id)}
               style={{ color: "red", marginLeft: 12 }}
@@ -74,8 +101,8 @@ export const Employee = () => {
     watch,
   } = useForm();
 
-  const handleClose = () => setModal1Visible(false);
-  const handleShow = () => setShow(true);
+
+ 
 
   const requestEmp = async () => {
     setLoading(true);
@@ -90,25 +117,47 @@ export const Employee = () => {
     requestEmp();
   }, []);
 
-  const onSubmit = async () => {
+  const onSubmit = async (values) => {
+   
+if(!show){
+  setLoading(true)
+  setTimeout(()=>{
+    setLoading(false)
     alert("employee added successfully");
-
-    const data = {
-      employee_name,
-      employee_age,
-      employee_salary,
-      employee_email,
-      employee_phone,
-      employee_type,
-      employee_city,
-    };
+  },2000)
+   
+    const data = values;
+    console.log(data)
     const response = await axios.post(`http://localhost:3004/data`, {
       ...data,
     });
     requestEmp();
     handleClose();
+   
+    form.resetFields();
+  }
+  else {
+
     setLoading(true)
-    reset();
+    setTimeout(()=>{
+      setLoading(false)
+      alert("updated successfully");
+    },2000)
+   
+    const data = values
+    console.log(data.employee_city);
+    const {id}=editEmp
+    const response = await axios.put(`http://localhost:3004/data/${id}`, {
+      ...data,
+    });
+    requestEmp();
+    handleClose();
+    form.resetFields();
+
+
+  }
+  
+    
   };
 
   const deleteEmp = async (id) => {
@@ -125,27 +174,14 @@ export const Employee = () => {
       return false;
     }
   };
-  const handleChange = (e) => {
-    setEmployeeCity(e.target.value);
-  };
 
   if (!dataSource) return "Loading...";
   return (
     <div>
-      <Layout>
-    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-      <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-        <Menu.Item>Employee App</Menu.Item>
-        <Menu.Item><Link style={{textDecoration:"none"}}  to="/">Home</Link> </Menu.Item>
-        <Menu.Item> <Link style={{textDecoration:"none"}} to="/login">Login </Link></Menu.Item>
-        <Menu.Item><Link style={{textDecoration:"none"}}  to="/admin">Admin </Link></Menu.Item>
 
-      </Menu>
-    </Header>
-    <Content className="site-layout" style={{ padding: '0 50px', marginTop: 64 }}>
-      <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
-      <span>
+      <HeaderCmp/>
+
+  <span>
         {" "}
         Total_Emp:-
         <span className="text-danger">{dataSource.length}</span>
@@ -154,7 +190,7 @@ export const Employee = () => {
         <Button
           className="mx-5"
           variant="primary"
-          onClick={() => setModal1Visible(true)}
+          onClick={handleAddEmployee}
         >
           Add Employee
         </Button>
@@ -163,7 +199,10 @@ export const Employee = () => {
         loading={loading}
         columns={columns}
         dataSource={dataSource}
-      ></Table>
+      >
+
+
+      </Table>
       <Modal
         footer={null}
         title="Employee Details"
@@ -171,188 +210,139 @@ export const Employee = () => {
         visible={modal1Visible}
         onOk={() => setModal1Visible(false)}
         onCancel={() => setModal1Visible(false)}
-      >
-        <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-          <div className="form-group" onChange={(e) => setName(e.target.value)}>
-            <input
-              {...register("name", {
-                required: "Name is required",
-                minLength: {
-                  value: 3,
-                  message: "minimum allowed length is 3 ",
-                },
-                maxLength: {
-                  value: 20,
-                  message: "Maximum allowed length is 20 ",
-                },
-              })}
-              onKeyUp={() => {
-                trigger("name");
-              }}
-              type="text"
-              className={` form-control ${
-                errors.name && "invalid"
-              } text-center`}
-              placeholder="Enter name"
-            />
-            {errors.name && (
-              <small className="text-danger">{errors.name.message}</small>
-            )}
-          </div>
-          <div className="form-group" onChange={(e) => setAge(e.target.value)}>
-            <input
-              {...register("age", {
-                required: "Age is required",
-                min: {
-                  value: 18,
-                  message: "minimum age is 18",
-                },
-                max: {
-                  value: 70,
-                  message: "maximum allowed age is 70",
-                },
-                pattern: {
-                  value: /^[0-9]*$/,
-                  message: "only number are allowed",
-                },
-              })}
-              onKeyUp={() => {
-                trigger("age");
-              }}
-              type="text"
-              className={` form-control ${
-                errors.age && "invalid"
-              } my-2 text-center`}
-              placeholder="Enter age"
-            />
-            {errors.age && (
-              <small className="text-danger">{errors.age.message}</small>
-            )}
-          </div>
-          <div
-            className="form-group"
-            onChange={(e) => setSalary(e.target.value)}
-          >
-            <input
-              {...register("salary", {
-                required: "Salary is required",
-                pattern: {
-                  value: /^[0-9]*$/,
-                  message: "only number are allowed",
-                },
-              })}
-              onKeyUp={() => {
-                trigger("salary");
-              }}
-              className={`form-control ${
-                errors.salary && "invalid"
-              } text-center`}
-              type="text"
-              placeholder="Enter salary"
-            />
-            {errors.salary && (
-              <small className="text-danger">{errors.salary.message}</small>
-            )}
-          </div>
-          <div
-            className="form-group"
-            onChange={(e) => setEmployeeEmail(e.target.value)}
-          >
-            <input
-              type="email"
-              {...register("email", {
-                required: "Email is required",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9]+\.[A-Z]{2,}$/i,
-                  message: "Invalid Email address",
-                },
-              })}
-              onKeyUp={() => {
-                trigger("email");
-              }}
-              className={`form-control ${
-                errors.email && "invalid"
-              } text-center my-2`}
-              placeholder="Enter Email"
-            />
-            {errors.email && (
-              <small className="text-danger">{errors.email.message}</small>
-            )}
-          </div>
-          <div
-            className="form-group"
-            onChange={(e) => setEmployeePhone(e.target.value)}
-          >
-            <input
-              type="text"
-              {...register("phone", {
-                required: "Phone is required",
-                pattern: {
-                  value:
-                    /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
-                  message: "Invalid phone no",
-                },
-              })}
-              onKeyUp={() => {
-                trigger("phone");
-              }}
-              className={`form-control ${
-                errors.phone && "invalid"
-              } text-center`}
-              placeholder="Enter Phone"
-            />
-            {errors.phone && (
-              <small className="text-danger">{errors.phone.message}</small>
-            )}
-          </div>
+      > 
+      <Form
+      form={form}
+      name="control-hooks"
+       autoComplete="off"
+       labelCol={{span:6}} 
+       wrapperCol={{span:18}}
+       onFinish={onSubmit}
+       >
+        <Form.Item name="employee_name" label='Username'
+        rules={[{
+          required:true,
+          message:"please enter your name"
+        },
+        {whitespace:true},
+       
+        {min:3},
 
-          <div className="radio-btn ">
-            Male
-            <input
-              className="mx-2 "
-              id="male"
-              value="male"
-              name="gender"
-              type="radio"
-              onChange={(e) => setEmployeeType(e.target.value)}
-            />
-            Female
-            <input
-              className="mx-2"
-              id="Female"
-              value="Female"
-              name="gender"
-              type="radio"
-              onChange={(e) => setEmployeeType(e.target.value)}
-            />
-            <br />
-            Select City:-
-            <select
-              value={employee_city}
-              onChange={(e) => handleChange(e)}
-              className="col-sm-12 py-2 my-2 mx-2"
-            >
-              {city.map((city) => (
-                <>
-                  <option value={city.city}>{city.city}</option>
-                </>
-              ))}
-            </select>
-          </div>
-          <Button variant="secondary" onClick={() => setModal1Visible(false)}>
-            Close
-          </Button>
-          <Button variant="primary" className="mx-4 col-md-9" htmlType="submit">
-            Add
-          </Button>
-        </form>
+        {max:20},
+      
+      ]}
+      hasFeedback
+        >
+           <Input placeholder="Type your name"  value={editEmp?.employee_name} />
+        </Form.Item>
+
+        <Form.Item name="employee_age" label='Age'
+        
+        rules={[{
+          required:true,
+          message:"please enter your age"
+        },
+        {whitespace:true},
+       
+      ]}
+      hasFeedback
+        >
+          <Input placeholder="Type your age"  value={editEmp?.employee_age}/>
+        </Form.Item>
+
+        <Form.Item name="employee_salary" label='Salary'
+        
+        rules={[{
+          required:true,
+          message:"please enter your salary"
+        },
+        {whitespace:true},
+       
+      ]}
+      hasFeedback
+        >
+          <Input placeholder="Type your salary"  value={editEmp?.employee_salary}/>
+        </Form.Item>
+
+        <Form.Item name="employee_email" label='Email'
+        
+        rules={[{
+          required:true,
+          message:"please enter your email"
+        },
+        {type:"email",message:'please enter a valid  email'},
+       
+      ]}
+      hasFeedback
+        >
+          <Input placeholder="Type your email" value={editEmp?.employee_email}/>
+        </Form.Item>
+
+        <Form.Item name="employee_phone" label='Phone'
+        
+        rules={[{
+          required:true,
+          message:"please enter your phone"
+        },
+        {whitespace:true},
+
+        {min:10},
+
+        {max:10,
+        message:"mobile no must be 10 digit"
+        }
+
+       
+      ]}
+      hasFeedback
+        
+        >
+          <Input placeholder="Type your phone" value={editEmp?.employee_phone}/>
+        </Form.Item>
+        <Form.Item name="employee_type" label='Gender' requiredMark="optional">
+         <Select>
+           <Select.Option value="male">Male</Select.Option>
+           <Select.Option value="female">FeMale</Select.Option>
+         </Select>
+        </Form.Item>
+        <Form.Item name="employee_city" label='City' requiredMark="optional">
+         <Select>
+           <Select.Option value="indore">indore</Select.Option>
+           <Select.Option value="dewas">dewas</Select.Option>
+           <Select.Option value="ujjain">ujjain</Select.Option>
+           <Select.Option value="bhopal">bhopal</Select.Option>
+           
+         </Select>
+        </Form.Item>
+        {show ?
+        <Form.Item   wrapperCol={{ offset:6,
+          span:18}}>
+        <Button block type="primary"  htmlType="submit">
+          update
+        </Button>
+        </Form.Item>
+        :
+        <Form.Item   wrapperCol={{
+          offset:6,
+          span:18}}>
+        <Button block type="primary"  htmlType="submit">
+          Add
+        </Button>
+        </Form.Item>
+        }
+        <Form.Item   wrapperCol={{
+          offset:6,
+          span:25 }}>
+        <Button block type="primary"  ghost onClick={handleClose}>
+        close
+        </Button>
+        </Form.Item>
+      </Form>
       </Modal>
+      <div className="login">
+      <Login dataSource={dataSource}/>
       </div>
-    </Content>
-    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-  </Layout>
-
-    
+   
     </div>
   );
 };

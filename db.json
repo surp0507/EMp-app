@@ -1,22 +1,12 @@
 {
   "data": [
     {
-      "employee_name": "Brielle ",
-      "employee_age": "62",
-      "employee_salary": "37200",
-      "employee_email": "brelle@gmail.com",
-      "employee_phone": "45231673",
-      "employee_type": "male",
-      "id": 6
-    },
-    {
       "employee_name": "Herrod Chandler",
       "employee_age": "52",
       "employee_salary": "1375033",
       "employee_email": "herrod@gmail.com",
       "employee_phone": "1234557894",
-      "employee_type": "male",
-      "id": 7
+      "id": 3001
     },
     {
       "employee_name": "Rhona devi",
@@ -25,87 +15,90 @@
       "employee_email": "Rhona@gmail.com",
       "employee_phone": "4561237891",
       "employee_type": "Female",
-      "id": 8
+      "id": 3002
     },
     {
-      "id": 9,
+      "id": 3003,
       "employee_name": "Colleen Hurst",
       "employee_salary": 205500,
       "employee_age": 39,
       "profile_image": ""
     },
     {
-      "id": 11,
+      "id": 3004,
       "employee_name": "Jena Gaines",
       "employee_salary": 90560,
       "employee_age": 30,
       "profile_image": ""
     },
     {
-      "id": 12,
+      "id": 3005,
       "employee_name": "Quinn Flynn",
       "employee_salary": 342000,
       "employee_age": 22,
       "profile_image": ""
     },
     {
-      "id": 14,
+      "id": 3006,
       "employee_name": "Haley Kennedy",
       "employee_salary": 313500,
       "employee_age": 43,
       "profile_image": ""
     },
     {
-      "id": 16,
+      "id": 3007,
       "employee_name": "Michael Silva",
       "employee_salary": 198500,
       "employee_age": 66,
       "profile_image": ""
     },
     {
-      "id": 18,
+      "id": 3008,
       "employee_name": "Gloria Little",
       "employee_salary": 237500,
       "employee_age": 59,
       "profile_image": ""
     },
     {
-      "id": 19,
+      "id": 3009,
       "employee_name": "Bradley Greer",
       "employee_salary": 132000,
       "employee_age": 41,
       "profile_image": ""
     },
     {
-      "id": 20,
-      "employee_name": "Dai Rios",
-      "employee_salary": 217500,
-      "employee_age": 35,
-      "profile_image": ""
+      "employee_name": "raju kumar verma",
+      "employee_age": "25",
+      "employee_salary": "45000",
+      "employee_email": "raju@gmail.com",
+      "employee_phone": "4522200044",
+      "employee_type": "male",
+      "employee_city": "indore",
+      "id": 3010
     },
     {
-      "id": 21,
+      "id": 3011,
       "employee_name": "Jenette Caldwell",
       "employee_salary": 345000,
       "employee_age": 30,
       "profile_image": ""
     },
     {
-      "id": 22,
+      "id": 3012,
       "employee_name": "Yuri Berry",
       "employee_salary": 675000,
       "employee_age": 40,
       "profile_image": ""
     },
     {
-      "employee_name": "caesar",
-      "employee_age": "21",
+      "employee_name": "Surendra kumar pak",
+      "employee_age": "22",
       "employee_salary": "25000",
       "employee_email": "caesar@gmail.com",
       "employee_phone": "7049497130",
-      "employee_type": "",
-      "employee_city": "ujjain",
-      "id": 23
+      "employee_type": "male",
+      "employee_city": "indore",
+      "id": 3013
     },
     {
       "employee_name": "Db",
@@ -114,7 +107,7 @@
       "employee_email": "breelle@gmail.com",
       "employee_phone": "4566134574",
       "employee_type": "male",
-      "id": 24
+      "id": 3014
     },
     {
       "employee_name": "sandeep",
@@ -123,7 +116,7 @@
       "employee_email": "sandeep@gmail.com",
       "employee_phone": "123456",
       "employee_type": "male",
-      "id": 28
+      "id": 3015
     },
     {
       "employee_name": "jitendra",
@@ -132,7 +125,7 @@
       "employee_email": "jitendra@gmail.com",
       "employee_phone": "1234567891",
       "employee_type": "male",
-      "id": 31
+      "id": 3016
     },
     {
       "employee_name": "kamlesh",
@@ -141,7 +134,7 @@
       "employee_email": "kamlesh@gmail.com",
       "employee_phone": "2314672482",
       "employee_type": "male",
-      "id": 32
+      "id": 3017
     },
     {
       "employee_name": "Aalok",
@@ -150,7 +143,75 @@
       "employee_email": "aalok@gmail.com",
       "employee_phone": "4567891232",
       "employee_type": "male",
-      "id": 33
+      "id": 3018
+    },
+    {
+      "employee_name": "sakshi ",
+      "employee_age": "25",
+      "employee_salary": "45000",
+      "employee_email": "shakshi@gmail.com",
+      "employee_phone": "4561237892",
+      "employee_type": "female",
+      "employee_city": "dewas",
+      "id": 3019
+    },
+    {
+      "employee_name": "Shani Verma",
+      "employee_age": "22",
+      "employee_salary": "120000",
+      "employee_email": "shanti@gmail.com",
+      "employee_phone": "56123789456",
+      "employee_type": "female",
+      "employee_city": "dewas",
+      "id": 3020
+    },
+    {
+      "employee_name": "parmod chauhan",
+      "employee_age": "22",
+      "employee_salary": "25000",
+      "employee_email": "parmod@gmail.com",
+      "employee_phone": "4567894261",
+      "employee_city": "indore",
+      "id": 3021
+    },
+    {
+      "employee_name": "parmod chauhan",
+      "employee_age": "22",
+      "employee_salary": "25000",
+      "employee_email": "parmod@gmail.com",
+      "employee_phone": "4567894261",
+      "employee_type": "female",
+      "employee_city": "bhopal",
+      "id": 3022
+    },
+    {
+      "employee_name": "ramesh",
+      "employee_age": "22",
+      "employee_salary": "124563",
+      "employee_email": "ramesh@gmail.com",
+      "employee_phone": "5641789455",
+      "employee_type": "male",
+      "employee_city": "dewas",
+      "id": 3023
+    },
+    {
+      "employee_name": "jitp",
+      "employee_age": "25",
+      "employee_salary": "5240000",
+      "employee_email": "jitp0507@gmail.com",
+      "employee_phone": "5461137895",
+      "employee_city": "dewas",
+      "id": 3024
+    },
+    {
+      "employee_name": "vinay kushwah",
+      "employee_age": "22",
+      "employee_salary": "250000",
+      "employee_email": "vinayy@gmail.com",
+      "employee_phone": "2564789132",
+      "employee_type": "male",
+      "employee_city": "dewas",
+      "id": 3025
     }
   ]
 }
